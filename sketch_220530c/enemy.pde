@@ -27,7 +27,7 @@ class Enemy extends GameObject {
     int i = 0;
     while ( i < object.size()) {
       GameObject obj = object.get(i);
-      if (obj instanceof Bullet) {
+      if (lives>0 && obj instanceof Bullet) {
         if (collidingWith(obj)) {
           
           lives--; 
@@ -37,6 +37,7 @@ class Enemy extends GameObject {
           object.add(new particles(x,y,3,2));
           object.add(new particles(x,y,8,2));
           object.add(new particles(x,y,2,2));
+          
           
         }
       }

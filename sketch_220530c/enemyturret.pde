@@ -45,7 +45,7 @@ class enemyTurret extends GameObject {
     int i = 0;
     while ( i < object.size()) {
       GameObject obj = object.get(i);
-      if (obj instanceof Bullet) {
+      if (lives>0 && obj instanceof Bullet) {
         if (collidingWith(obj)) {
           lives--; 
           obj.lives = 0;  // bullet disappears 
@@ -56,7 +56,7 @@ class enemyTurret extends GameObject {
           object.add(new particles(x,y,2,2));
           object.add(new particles(x,y,3,9));
           object.add(new particles(x,y,8,15));
-          object.add(new powerup(x,y,8,15));
+          object.add(new gunPowerup(x,y,2,2));
           
         }
       }

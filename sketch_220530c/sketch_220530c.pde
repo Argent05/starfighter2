@@ -7,6 +7,7 @@ int GameLevel;
 float counter;
 int timer123;
 ArrayList <GameObject> object;
+int gunmode;
 
 Starfighter player1;
 boolean up, down, left, right, space;
@@ -19,14 +20,14 @@ void setup() {
   rectMode(CENTER); 
   textMode(CENTER);
   size(800, 800); 
-  mode = INTRO;
+  mode = GAMEOVER;
   GameLevel = 1;
   timer123= 1;
   object = new ArrayList<GameObject>();
   player1 = new Starfighter();
   object.add(player1);
   counter = 1;
-
+gunmode = 0;
   numberOfFrames = 50;
   gif = new PImage[numberOfFrames];
   int f = 0;

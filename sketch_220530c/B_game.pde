@@ -1,15 +1,24 @@
 void game() {
 
  counter++;
- 
+
+
 
  if (counter == 1000){
   GameLevel = 2; 
    
  }
  
-  if (counter == 1000){
-  GameLevel = 2; 
+  if (counter == 2000){
+ timer123 = 0;
+    GameLevel = 3; 
+   
+ }
+ 
+  if (counter == 2500){
+  
+    timer123 = 0;
+    GameLevel = 4; 
    
  }
   
@@ -22,6 +31,24 @@ void game() {
     timer123++;
     textSize(60);
     text("GAME LEVEL 2", width/2-200, height/2);
+    
+  }
+  
+  
+  if (GameLevel == 3 && timer123 <100) {      //why isn't this showing
+
+    timer123++;
+   
+    textSize(60);
+    text("GAME LEVEL 3", width/2-200, height/2);
+  }
+    
+    if (GameLevel == 4 && timer123 <100) {      //why isn't this showing
+
+   
+    timer123++;
+    textSize(60);
+    text("GAME LEVEL 4", width/2-200, height/2);
   }
   fill(#9C95DC, 90);
   rect(width/2, height/2, width, height);
@@ -53,7 +80,7 @@ void addObjects() {
   if (GameLevel == 2) {
     if (frameCount % 10 == 0) object.add(new Enemy());
     if (frameCount % 70 == 0) object.add(new Destroyer());
-    if (frameCount % 100 == 0) object.add(new Death());
+    if (frameCount % 40 == 0) object.add(new Death());
     if (frameCount % 100 == 0) object.add(new enemyTurret());
   }
 
@@ -61,7 +88,14 @@ void addObjects() {
     if (frameCount % 10 == 0) object.add(new Enemy());
     if (frameCount % 70 == 0) object.add(new Destroyer());
     if (frameCount % 100 == 0) object.add(new Death());
-    if (frameCount % 100 == 0) object.add(new enemyTurret());
+    if (frameCount % 40 == 0) object.add(new enemyTurret());
+  }
+  
+  if (GameLevel == 4) {
+    if (frameCount % 4 == 0) object.add(new Enemy());
+    if (frameCount % 50 == 0) object.add(new Destroyer());
+    if (frameCount % 60 == 0) object.add(new Death());
+    if (frameCount % 30 == 0) object.add(new enemyTurret());
   }
 }
 

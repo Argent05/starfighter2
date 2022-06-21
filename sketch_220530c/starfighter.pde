@@ -1,22 +1,58 @@
 class Starfighter extends GameObject {
 
   int cooldown, threshold;
-  float gunmode, teleport;
+  float teleport;
 
 
   Starfighter() {
-    super(width/2, height/2, 0, 0, 40, #FF0000, 10);
+    super(width/2, height/2, 0, 0, 40, #FF0000, 30);
     threshold = 4;
     cooldown = threshold;
   }
 
   void act() {
+    
     super.act();
     //managing the gun
     cooldown++;
     if (space && cooldown >= threshold) {
-      object.add( new Bullet());
-      cooldown= 0;
+      
+       if (gunmode == 0) {   
+        object.add( new Bullet(x, y, 0, -10,10));
+        cooldown = 0;
+      }
+      
+      if (gunmode == 1) {   
+        object.add( new Bullet(x, y, 0, -1,20));     //remember last variable is life
+        cooldown = 0;
+      }
+      
+      if (gunmode == 2) {   
+        object.add( new Bullet(x, y, 0, -1,20));
+          object.add( new Bullet(x, y, 0, -20,20));
+        cooldown = 0;
+      }
+      
+      
+       if (gunmode == 4) {   
+        object.add( new Bullet(x, y, 4, -1,1));
+          object.add( new Bullet (x, y, 2, -20,20));
+           object.add( new Bullet(x, y, 7, -20,90));
+            object.add( new Bullet(x, y, -20, -50,20));
+        cooldown = 0;
+      }
+      if (gunmode == 6) {   
+        println(gunmode);
+        object.add( new Bullet(x, y, 0, -1,10));
+        object.add( new Bullet(x-20, y,  0, -1,10));
+        object.add( new Bullet(x-30, y-90, -0, -1,10 ));   //bullets get extra lives
+        
+      }
+      
+      if (gunmode>6){
+       gunmode=6;        //constraint for gunmode, change if another`mode higher than 6 is added
+        
+      }
     }
 
 
@@ -73,7 +109,7 @@ class Starfighter extends GameObject {
       }
       k++;
     }
-   int h = 0;
+    int h = 0;
     while ( h < object.size()) {
       GameObject obj = object.get(h);
       if (obj instanceof EnemyBeam) {
@@ -93,7 +129,7 @@ class Starfighter extends GameObject {
           teleport = 1;
           lives--; 
           obj.lives = 0; 
-          
+
           // bullet disappears 
           // object.add(
         }
@@ -114,7 +150,19 @@ class Starfighter extends GameObject {
       }
       z++;
     }
-
+int a= 0;
+    while ( a< object.size()) {
+      GameObject obj = object.get(a);
+      if (obj instanceof gunPowerup) {
+        if (collidingWith(obj)) {
+        gunmode++;
+          lives--; 
+          obj.lives = 0;  // bullet disappears 
+          // object.add(
+        }
+      }
+      a++;
+    }
 
     // if (lives <= 0) {
     // mode = GAMEOVER; 

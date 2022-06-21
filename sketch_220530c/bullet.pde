@@ -1,8 +1,8 @@
 class Bullet extends GameObject {
 
 
-  Bullet() {
-    super(player1.x,player1.y, 0,-10,5,#FF0000,1);
+  Bullet(float x, float y,float vx,float vy,float lives) {
+    super(player1.x,player1.y, vx,vy,5,#FF0000,1);
   
   }
 
